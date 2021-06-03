@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import { createPortal } from 'react-dom';
 import styles from './Modal.module.css';
-
-const modalRoot = document.querySelector('#modal-root');
 
 class Modal extends Component {
     componentDidMount() {
@@ -19,20 +16,19 @@ class Modal extends Component {
         }
     }
 
-    hendleBackdropClick = event => {
+    handleBackdropClick = event => {
         if (event.currentTarget === event.target) {
             this.props.onClose();
         }
     }
 
     render() {
-        return createPortal(
+        return (
         <div className={styles.Overlay} onClick={this.handleBackdropClick}>
             <div className={styles.Modal}>
-                <img src={this.props.largeImage} alt="" />
+            <img src={this.props.largeImage} alt="" />
             </div>
-        </div>,
-        modalRoot,
+        </div>
         );
     }
 }
